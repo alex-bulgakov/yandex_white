@@ -3,36 +3,36 @@
 #include <map>
 #include <algorithm>
 #include <math.h>
+#include <map>
 using namespace std;
+vector<string> buffer;
 
-/*
- * tests
- */
+void addToBoffer(string s) {
+	buffer.push_back(s);
+}
+
+void printBuffer() {
+	for (string s : buffer) {
+		cout << s << endl;
+	}
+}
+
+void NewBus(map<string, vector<string>>& m, string bus, int stop_count) {
+	for (int i = 1; i <= stop_count; i++) {
+		m[bus].push_back("stop" + to_string(i));
+	}
+}
+
+void BusesForStop(map<string, vector<string>>& m, string stop) {
+
+}
 
 int main() {
-	vector<int> day_months = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-	vector<vector<string>> todo(31);
-	string command, s;
-	int i, q;
-	int current_month = 0;
+	map<string, vector<string>> m;
+	NewBus(m, "bus1", 5);
 
-	for (int j = 0; j < q; j++) {
-		cin >> command;
-		if (command == "ADD") {
-			cin >> i >> s;
-			todo[i-1].push_back(s);
-		} else if (command == "NEXT") {
-			if (current_month > 11) current_month = 0;
-			current_month++;
-			if (day_months[current_month] > todo.size()) {
-				todo.resize(current_month);
-			} else if (day_months[current_month] < todo.size()) {
-				for (int i = current_month; i < todo.size(); i++) {
-
-				}
-			}
-		}
+	for (string s : m["bus1"]) {
+		cout << s << endl;
 	}
-
 	return 0;
 }
