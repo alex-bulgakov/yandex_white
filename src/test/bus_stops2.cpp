@@ -25,8 +25,9 @@ bool contains(map<string, vector<string>> m, vector<string> v) {
 }
 
 int main() {
+	int index = 1;
 	vector<string> buffer;
-	map<string, vector<string>> result;
+	map<vector<string>, int> result;
 	int q, count;
 	string stop;
 	vector<string> tmp;
@@ -37,13 +38,12 @@ int main() {
 			cin >> stop;
 			tmp.push_back(stop);
 		}
-		if (contains(result, tmp)) {
-			buffer.push_back("Already exists for " + to_string(getIndexOfExist(result, tmp)+1));
+		if (result.count(tmp) > 0) {
+			buffer.push_back("Already exists for " + to_string(result.at(tmp)));
 		} else {
-			int size = result.size() + 1;
-			string name = "New bus " + to_string(size);
-			result[name] = (tmp);
-			buffer.push_back(name);
+			result[tmp] = index;
+			buffer.push_back("New bus " + to_string(index));
+			index++;
 		}
 		tmp.clear();
 	}
